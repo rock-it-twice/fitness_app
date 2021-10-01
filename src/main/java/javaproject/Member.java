@@ -14,8 +14,8 @@ public class Member {
     // Constructors    
     public Member()
     {
-        memberType = pMemberType;
-        int pMemberID;
+        memberID = pMemberID;
+        memberType = pMemberType;        
         String pMemberName;
         double pFees;
         System.out.println("Member name: " + name + "/nMemberID: " + memberID);
@@ -23,15 +23,6 @@ public class Member {
     }
     
     //get- set- Methods
-    public void setMemberType(char pMemberType)
-    {
-        memberType = pMemberType;
-    }
-    public char getMemberType()
-    {
-        return memberType;
-    }
-    
     public void setMemberID(int pMemberID)
     {
         memberID = pMemberID;
@@ -49,6 +40,15 @@ public class Member {
     {
         return name;
     }
+    
+    public void setMemberType(char pMemberType)
+    {
+        memberType = pMemberType;
+    }
+    public char getMemberType()
+    {
+        return memberType;
+    }   
     
     public void setFees(double pFees)
     {
