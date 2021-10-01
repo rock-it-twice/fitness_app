@@ -12,7 +12,8 @@ public class Member {
     private double fees;
     
     // Constructors    
-    public Member()
+    public Member(char pMemberType, int pMemberID, 
+            String pMemberName, double pFees)
     {
         memberType = pMemberType;
         memberID = pMemberID;
