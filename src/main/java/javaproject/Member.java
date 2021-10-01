@@ -6,15 +6,15 @@ package javaproject;
  */
 public class Member {
     // Fields
-    private char memberType;
     private int memberID;
     private String name;
+    private char memberType; 
     private double fees;
     
     // Constructors    
     public Member()
     {
-        char pMemberType;
+        memberType = pMemberType;
         int pMemberID;
         String pMemberName;
         double pFees;
