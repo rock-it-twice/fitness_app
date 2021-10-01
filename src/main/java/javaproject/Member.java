@@ -6,56 +6,58 @@ package javaproject;
  */
 public class Member {
     // Fields
+    private char memberType;
     private int memberID;
-    private String name;
-    private char memberType; 
+    private String name;     
     private double fees;
     
     // Constructors    
     public Member()
     {
+        memberType = pMemberType;
         memberID = pMemberID;
-        memberType = pMemberType;        
-        String pMemberName;
-        double pFees;
-        System.out.println("Member name: " + name + "/nMemberID: " + memberID);
-        System.out.println("-----------------------");
+        name = pMemberName;                
+        fees = pFees;        
     }
     
     //get- set- Methods
+    public void setMemberType(char pMemberType)
+    {
+        memberType = pMemberType;
+    }    
     public void setMemberID(int pMemberID)
     {
         memberID = pMemberID;
     }
-    public int getMemberID()
-    {
-        return memberID;
-    }
-    
     public void setName(String pMemberName)
     {
         name = pMemberName;
+    }
+    public void setFees(double pFees)
+    {
+        fees = pFees;
+    }
+    
+    public char getMemberType()
+    {
+        return memberType;
+    }    
+    public int getMemberID()
+    {
+        return memberID;
     }
     public String getName()
     {
         return name;
     }
-    
-    public void setMemberType(char pMemberType)
-    {
-        memberType = pMemberType;
-    }
-    public char getMemberType()
-    {
-        return memberType;
-    }   
-    
-    public void setFees(double pFees)
-    {
-        fees = pFees;
-    }
     public double getFees()
     {
         return fees;
+    }
+    
+    //toString
+    @Override
+    public String toString(){
+        return memberType + " , " + memberID + " , " + name + " , " + fees;
     }
 }
