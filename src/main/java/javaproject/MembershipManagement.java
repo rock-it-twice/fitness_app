@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class MembershipManagement {
     //fields
     final private Scanner reader = new Scanner(System.in);
+    final private LinkedList<String> clubOptionsList = new LinkedList();
     
     //Methods
     private int getIntInput()
@@ -34,11 +35,16 @@ public class MembershipManagement {
     }
     
     public void printClubOptions()
-    {
-        System.out.println("club Mercury");
-        System.out.println("club Neptune");
-        System.out.println("club Jupiter");
-        System.out.println("Multi Clubs");
+    {        
+        clubOptionsList.add("club Mercury");
+        clubOptionsList.add("club Neptune");
+        clubOptionsList.add("club Jupiter");
+        clubOptionsList.add("Multi Clubs");
+        
+        for(int i = 0; i < clubOptionsList.size(); i++)
+        {
+            System.out.println((i+1) + ") " + clubOptionsList.get(i));        
+        }
     }
     
     public int getChoice()
@@ -64,5 +70,68 @@ public class MembershipManagement {
         int memberID;
         Member mbr;
         Calculator<Integer> cal;
+        
+        //Name
+        System.out.print("Enter name of member: ");
+        name = reader.nextLine();
+        
+        //club selector
+        printClubOptions();
+        System.out.print("Enter a number in the proposed range: ");        
+        club = getIntInput();
+        while(club < 1 || club > (clubOptionsList.size() + 1))
+        {
+            System.out.print("Please, enter a number in the proposed range: ");
+            club = getIntInput();
+        }
+        
+        //memberID generator
+        if(m.size() > 0)
+        {
+            memberID = m.getLast().getMemberID() + 1;
+        }
+        else
+            memberID = 1;
+        
+        //abstract method realization of func interface
+        if (club != 4)
+        {
+            cal = (n)->{
+                switch(n)
+                {
+                    case 1:
+                        return 900;
+                    case 2:
+                        return 950;
+                    case 3:
+                        return 1000;
+                    default:
+                        return -1;
+                }
+            };
+            fees = cal.calculateFees(club);
+            mbr = new SingleClubMember('S', memberID, name, fees, club);
+            m.add(mbr);
+            mem = mbr.toString();
+            System.out.println("\nStatus: New single member added.\n");
+        }
+        else
+        {
+            cal = (n)->{
+                switch(n)
+                {
+                    case 4:
+                        return 1200;
+                    default:
+                        return -1;
+                }
+            };
+            fees = cal.calculateFees(club);
+            mbr = new MultiClubMember('M', memberID, name, fees, 100);
+            m.add(mbr);
+            mem = mbr.toString();
+            System.out.println("\nStatus: New multi member added.\n");                   
+        }        
+        return mem;
     }
 }
