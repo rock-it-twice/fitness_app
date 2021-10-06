@@ -134,4 +134,48 @@ public class MembershipManagement {
         }        
         return mem;
     }
+    
+    public void removeMember(LinkedList<Member> m)
+    {
+        int memberID;
+        System.out.println("Please, enter the member ID, "
+                + "that you want to delete");
+        memberID = getIntInput();
+        for(int i = 0; i<m.size(); i++)
+        {
+            if(m.get(i).getMemberID() == memberID)
+            {
+                m.remove(i);
+                System.out.println("Member with ID " + memberID + " removed");
+                return;
+            }            
+        }
+        System.out.println("Can't find member with " + memberID + " ID.");
+        
+    }
+    
+    public void printMemberInfo(LinkedList<Member> m)
+    {
+        int memberID;
+        System.out.println("Enter the member ID, for more getting INFO: ");
+        memberID = getIntInput();
+        for(int i = 0; i<m.size(); i++)
+        {
+            if(m.get(i).getMemberID() == memberID)
+            {
+                String[] memberInfo = m.get(i).toString().split(" , ");
+                
+                System.out.println("Member type: " + memberInfo[0]);
+                System.out.println("Member ID: " + memberInfo[1]);
+                System.out.println("Member name: " + memberInfo[2]);
+                System.out.println("Member fees: " + memberInfo[3]);
+                if(memberInfo[0].equals('S'))
+                {                
+                System.out.println("Club ID: " + memberInfo[4]);
+                }
+                else
+                System.out.println("Membership points: " + memberInfo[4]);                
+            }
+        }
+    }
 }
