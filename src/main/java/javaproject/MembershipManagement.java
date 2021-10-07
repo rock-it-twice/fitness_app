@@ -13,7 +13,16 @@ public class MembershipManagement {
     final private Scanner reader = new Scanner(System.in);
     final private LinkedList<String> clubOptionsList = new LinkedList();
     
-    //Methods
+    //Methods    
+    private void addClub()
+    {       
+            clubOptionsList.clear();
+            clubOptionsList.add("club Mercury");
+            clubOptionsList.add("club Neptune");
+            clubOptionsList.add("club Jupiter");
+            clubOptionsList.add("Multi Clubs");
+    }
+    
     private int getIntInput()
     {
         int choice = 0;
@@ -35,12 +44,8 @@ public class MembershipManagement {
     }
     
     public void printClubOptions()
-    {        
-        clubOptionsList.add("club Mercury");
-        clubOptionsList.add("club Neptune");
-        clubOptionsList.add("club Jupiter");
-        clubOptionsList.add("Multi Clubs");
-        
+    {   
+        addClub();
         for(int i = 0; i < clubOptionsList.size(); i++)
         {
             System.out.println((i+1) + ") " + clubOptionsList.get(i));        
@@ -70,6 +75,7 @@ public class MembershipManagement {
         int memberID;
         Member mbr;
         Calculator<Integer> cal;
+        int clubsInList = clubOptionsList.size();
         
         //Name
         System.out.print("Enter name of member: ");
@@ -79,7 +85,7 @@ public class MembershipManagement {
         printClubOptions();
         System.out.print("Enter a number in the proposed range: ");        
         club = getIntInput();
-        while(club < 1 || club > (clubOptionsList.size() + 1))
+        while(club < 1 || club > (clubsInList))
         {
             System.out.print("Please, enter a number in the proposed range: ");
             club = getIntInput();
@@ -94,7 +100,7 @@ public class MembershipManagement {
             memberID = 1;
         
         //abstract method realization of func interface
-        if (club != 4)
+        if (club != clubsInList)
         {
             cal = (n)->{
                 switch(n)
