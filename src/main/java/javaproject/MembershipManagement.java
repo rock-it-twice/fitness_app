@@ -32,11 +32,11 @@ public class MembershipManagement {
             {   
                 choice = reader.nextInt();
                 if (choice == 0)
-                    throw new InputMismatchException();
-                reader.nextLine();
+                    throw new InputMismatchException();                
             }
             catch(InputMismatchException e)
             {
+                reader.nextLine();
                 System.out.println("ERROR: INVALID INPUT. Please try again:");                
             }
         }
@@ -45,7 +45,7 @@ public class MembershipManagement {
     
     public void printClubOptions()
     {   
-        addClub();
+        addClub();        
         for(int i = 0; i < clubOptionsList.size(); i++)
         {
             System.out.println((i+1) + ") " + clubOptionsList.get(i));        
@@ -55,13 +55,13 @@ public class MembershipManagement {
     public int getChoice()
     {
         int choice;
-        System.out.println("Welcome to OZONE fitness center");
+        System.out.println("\nWelcome to OZONE fitness center");
         System.out.println("===============================");
         System.out.println("1) Add member;");
         System.out.println("2) Remove member;");
         System.out.println("3) Display member information;");
         System.out.println("Please, select an option "
-                + "(or enter \"-1\" to quit:)");
+                + "(or enter \"-1\" to quit):");
         choice = getIntInput();
         return choice;
     }
@@ -74,20 +74,20 @@ public class MembershipManagement {
         double fees;
         int memberID;
         Member mbr;
-        Calculator<Integer> cal;
-        int clubsInList = clubOptionsList.size();
+        Calculator<Integer> cal;        
         
         //Name
-        System.out.print("Enter name of member: ");
+        reader.nextLine();
+        System.out.println("\nEnter name of member: ");
         name = reader.nextLine();
         
         //club selector
-        printClubOptions();
-        System.out.print("Enter a number in the proposed range: ");        
+        System.out.println("\nChoose a club option: "); 
+        printClubOptions();               
         club = getIntInput();
-        while(club < 1 || club > (clubsInList))
+        while(club < 1 || club > 4)
         {
-            System.out.print("Please, enter a number in the proposed range: ");
+            System.out.println("Please, enter a number in the proposed range: ");
             club = getIntInput();
         }
         
@@ -100,7 +100,7 @@ public class MembershipManagement {
             memberID = 1;
         
         //abstract method realization of func interface
-        if (club != clubsInList)
+        if (club != 4)
         {
             cal = (n)->{
                 switch(n)
@@ -144,10 +144,10 @@ public class MembershipManagement {
     public void removeMember(LinkedList<Member> m)
     {
         int memberID;
-        System.out.println("Please, enter the member ID, "
+        System.out.println("\nPlease, enter the member ID, "
                 + "that you want to delete");
         memberID = getIntInput();
-        for(int i = 0; i<m.size(); i++)
+        for(int i = 0; i < m.size(); i++)
         {
             if(m.get(i).getMemberID() == memberID)
             {
@@ -163,9 +163,9 @@ public class MembershipManagement {
     public void printMemberInfo(LinkedList<Member> m)
     {
         int memberID;
-        System.out.println("Enter the member ID, for more getting INFO: ");
+        System.out.println("\nEnter the member's ID, to get INFO: ");
         memberID = getIntInput();
-        for(int i = 0; i<m.size(); i++)
+        for(int i = 0; i < m.size(); i++)
         {
             if(m.get(i).getMemberID() == memberID)
             {
